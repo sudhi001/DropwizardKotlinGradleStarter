@@ -1,0 +1,17 @@
+template: Hello, %s!
+defaultName: Stranger
+
+logging:
+  level: INFO
+#  appenders:
+#    - type: file
+#      currentLogFilename: /Users/sudhi/Workspace/my/DropwizardKotlinGradleStarter/log/myapplication.log
+#      archivedLogFilenamePattern: /Users/sudhi/Workspace/my/DropwizardKotlinGradleStarter/log/myapplication-%d.log
+
+server:
+  applicationConnectors:
+  - type: http
+    port: 8080
+  adminConnectors:
+  - type: http
+    port: 8081

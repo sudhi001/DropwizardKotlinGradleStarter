@@ -1,0 +1,52 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.9.21'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group 'in.sud-dhi.webapp'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'application'
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation( "io.dropwizard:dropwizard-core:1.3.5")
+    // JAX-B dependencies for JDK 9+
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "21"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "21"
+}
+
+
+// ## for Application.run
+mainClassName = 'in.sudhi.webapp.Applicationkt'
+run {
+    args = ['server', 'config.yml']
+}
+
+shadowJar {
+    mergeServiceFiles()
+    exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
+    manifest {
+        attributes 'Implementation-Title': rootProject.name
+        attributes 'Implementation-Version': rootProject.version
+        attributes 'Implementation-Vendor-Id': rootProject.group
+        attributes 'Built-By': InetAddress.localHost.hostName
+        attributes 'Created-By': 'Gradle ' + gradle.gradleVersion
+        attributes 'Main-Class': 'in.sudhi.webapp.Applicationkt'
+    }
+}
