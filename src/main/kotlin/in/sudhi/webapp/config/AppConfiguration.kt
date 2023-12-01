@@ -9,4 +9,6 @@ class AppConfiguration(
     @JsonProperty @NotEmpty val defaultName: String = "Stranger") : Configuration() {
 
     constructor() : this("", "") // needed by Jackson deserialization
+
+
 }
