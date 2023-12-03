@@ -1,6 +1,7 @@
 template: Hello, %s!
 defaultName: Stranger
 
+
 logging:
   level: INFO
 #  appenders:

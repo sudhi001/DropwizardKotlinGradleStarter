@@ -1,20 +1,24 @@
 package `in`.sudhi.webapp.constoller
 
-import Device
+import `in`.sudhi.webapp.model.Device
 import HttpException
 import com.codahale.metrics.annotation.Timed
 import `in`.sudhi.webapp.model.IdValues
 import `in`.sudhi.webapp.utils.ID
+import jakarta.ws.rs.GET
+import jakarta.ws.rs.POST
+import jakarta.ws.rs.Path
+import jakarta.ws.rs.PathParam
+import jakarta.ws.rs.Produces
+import jakarta.ws.rs.core.MediaType
+import jakarta.ws.rs.core.Response
 import java.security.KeyPair
 import java.time.Instant
 import java.util.*
-import javax.ws.rs.*
-import javax.ws.rs.core.MediaType.APPLICATION_JSON
-import javax.ws.rs.core.Response
 
 
 @Path("/cfg")
-@Produces(APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 class DeviceConfigController{
 
     @GET
@@ -31,7 +35,7 @@ class DeviceConfigController{
         return listOf(IdValues(1,"http://localhost:8080"), IdValues(2,"http://localhost:8080"))
     }
 
-    @GET
+    @POST
     @Path("/generate/device")
     @Timed
     fun postCreateDevice(): Device {

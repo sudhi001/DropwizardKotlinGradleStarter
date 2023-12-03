@@ -16,14 +16,22 @@ repositories {
 }
 
 dependencies {
+    implementation(platform("io.dropwizard:dropwizard-bom:4.0.4"))
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("io.dropwizard:dropwizard-core:1.3.5")
-    // JAX-B dependencies for JDK 9+
-    implementation("jakarta.xml.bind:jakarta.xml.bind-api:2.3.2")
-    implementation("org.glassfish.jaxb:jaxb-runtime:2.3.2")
+    implementation("io.dropwizard:dropwizard-core")
+
+    //Auth
+    implementation("io.dropwizard:dropwizard-auth")
 
     //UUID
     implementation("com.github.f4b6a3:ulid-creator:5.2.2")
+
+    // Database
+    implementation("io.dropwizard:dropwizard-jdbi3")
+    implementation("org.xerial:sqlite-jdbc:3.34.0")
+
+
+
 }
 
 tasks {
